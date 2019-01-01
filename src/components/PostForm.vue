@@ -1,16 +1,16 @@
 <template>
-  <div id="post-form">
-    <input type="text" id="post-title" placeholder="Title">
+  <form id="post-form" @submit="handleOnSubmit">
+    <input type="text" id="post-title"  v-model="title" placeholder="Title">
     <div id="editor">
       <textarea v-model="markdownText">input</textarea>
       <div class="save-button">
-        <button class="button is-primary">Save</button>
+        <button type="submit" class="button is-primary">Save</button>
       </div>
     </div>
     <div id="preview">
       <div v-html="compiledMarkdown"></div>
     </div>
-  </div>
+  </form>
 </template>
 <script>
   import marked from 'marked';
@@ -18,6 +18,7 @@
 
   export default {
     name: 'postForm',
+    props: ['initPost'],
     components: {},
     created: function () {
       marked.setOptions({
@@ -34,7 +35,27 @@
     },
     data: function () {
       return {
+        title: '',
         markdownText: ''
+      }
+    },
+    watch: {
+      initPost: function () {
+        if(this.initPost) {
+          this.title = this.initPost.title
+          this.markdownText = this.initPost.markdownText
+        } else {
+          this.title = ''
+          this.markdownText = ''
+        }
+      }
+    },
+    methods: {
+      handleOnSubmit: function (e) {
+        e.preventDefault()
+        if(this.title.length === 0) { return alert('タイトルは必ず入力してください。') }
+        const post = { title: this.title, markdownText: this.markdownText }
+        this.$emit('submit', post)
       }
     }
   }
@@ -63,6 +84,7 @@
     font-family: 'Helvetica Neue', Arial, sans-serif;
     color: #333;
   }
+
   #post-form textarea {
     width: 100%;
     height: 95%;

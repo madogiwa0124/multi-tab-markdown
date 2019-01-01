@@ -4,19 +4,17 @@
       <li class="is-active">
         <a>
           <span>New Post</span>
-          <span class="icon is-small"><i class="fas fa-window-close" aria-hidden="true"></i></span>
+          <span class="icon is-small"><i class="fas fa-window-close"></i></span>
         </a>
       </li>
       <li>
         <a>
           <span>2019/01/01 Hoge</span>
-          <span class="icon is-small"><i class="fas fa-window-close" aria-hidden="true"></i></span>
+          <span class="icon is-small"><i class="fas fa-window-close"></i></span>
         </a>
       </li>
       <li>
-        <a>
-          <span class="icon is-small"><i class="fas fa-plus" aria-hidden="true"></i></span>
-        </a>
+        <a @click="handleOnNewPost($event)"><i class="fas fa-plus"></i></a>
       </li>
     </ul>
   </div>
@@ -24,9 +22,14 @@
 <script>
   export default {
     name: 'tabs',
-    components: {}
+    components: {},
+    methods: {
+      handleOnNewPost: function (e) {
+        e.preventDefault();
+        this.$emit('newPost')
+      }
+    }
   }
 </script>
 <style lang="scss">
-
 </style>

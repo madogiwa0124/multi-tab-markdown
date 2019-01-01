@@ -5,7 +5,7 @@
     </p>
     <ul class="menu-list">
       <li v-for="(item, index) in items" :key="index">
-        <a :href="item.link">{{item.title}}</a>
+        <a @click="handleOnClick($event, index)">{{item.title}}</a>
       </li>
     </ul>
   </div>
@@ -15,10 +15,13 @@
     name: 'menuItem',
     components: {},
     props: ['title', 'items'],
+    methods: {
+      handleOnClick: function(e, index) {
+        e.preventDefault();
+        this.$emit('selectItem', index)
+      }
+    }
   }
 </script>
 <style lang="scss">
-  .menu-item {
-    margin: 5px;
-  }
 </style>

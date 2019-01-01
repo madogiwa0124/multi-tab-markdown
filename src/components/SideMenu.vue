@@ -4,7 +4,7 @@
       <i class="fas fa-pen-nib"></i>
       MTM
     </h1>
-    <MenuItem title="Posts" :items="postItems()"/>
+    <MenuItem title="Posts" :items="posts" @selectItem="handleOnSelectItem" />
   </div>
 </template>
 <script>
@@ -13,12 +13,10 @@
   export default {
     name: 'sideMenu',
     components: { MenuItem },
+    props: ['posts'],
     methods: {
-      postItems: () => {
-        return [
-          { title: '20190101 Hoge', link: '/' },
-          { title: '20190101 Fuga', link: '/' }
-        ]
+      handleOnSelectItem: function (index) {
+        this.$emit('selectItem', index)
       }
     }
   }
