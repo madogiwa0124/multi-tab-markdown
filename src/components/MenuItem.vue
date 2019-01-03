@@ -4,8 +4,11 @@
       {{title}}
     </p>
     <ul class="menu-list">
-      <li v-for="(item, index) in items" :key="index">
-        <a @click="handleOnClick($event, index)">{{item.title | shortTitle}}</a>
+      <li v-for="(item, index) in items" :key="index" class="menu-item">
+        <a @click="handleOnClick($event, index)">
+          <i @click="handleOnDelete($event, index)" class="delete"></i>
+          {{item.title | shortTitle}}
+        </a>
       </li>
     </ul>
   </div>
@@ -17,8 +20,12 @@
     props: ['title', 'items'],
     methods: {
       handleOnClick: function(e, index) {
-        e.preventDefault();
+        e.preventDefault()
         this.$emit('selectItem', index)
+      },
+      handleOnDelete: function(e, index) {
+        e.stopPropagation()
+        this.$emit('deleteItem', index)
       }
     },
     filters: {
@@ -30,4 +37,13 @@
   }
 </script>
 <style lang="scss">
+  .menu-list {
+    font-size: 14px;
+
+    .delete {
+      &:hover {
+        background-color: hsl(348, 100%, 61%);
+      }
+    }
+  }
 </style>

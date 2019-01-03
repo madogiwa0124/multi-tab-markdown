@@ -1,7 +1,11 @@
 <template>
   <div id="app" class="columns">
     <aside class="column is-2">
-      <SideMenu :posts="posts" @selectItem="handleOnSelectItem" />
+      <SideMenu
+        :posts="posts"
+        @selectItem="handleOnSelectItem"
+        @deleteItem="handleOnDeleteItem"
+      />
     </aside>
     <main class="main-content column">
       <Tabs
@@ -34,6 +38,11 @@
         const post = this.posts[index]
         if(!this.isTabbed(post)) this.tabbedPosts.push(post)
         this.selectedPost = post
+      },
+      handleOnDeleteItem: function (index) {
+        // TODO: ここはタブも合わせて削除するようにする。
+        if(this.isTabbed(this.posts[index])) return alert('タブを閉じてから削除してください。')
+        this.posts.splice(index, 1)
       },
       handleOnSelectTab: function (index) {
         this.selectedPost = this.tabbedPosts[index]

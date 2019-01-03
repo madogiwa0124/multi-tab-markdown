@@ -4,7 +4,12 @@
       <i class="fas fa-pen-nib"></i>
       MTM
     </h1>
-    <MenuItem title="Posts" :items="posts" @selectItem="handleOnSelectItem" />
+    <MenuItem
+      title="Posts"
+      :items="posts"
+      @selectItem="handleOnSelectItem"
+      @deleteItem="handleOnDeleteItem"
+    />
   </div>
 </template>
 <script>
@@ -17,6 +22,9 @@
     methods: {
       handleOnSelectItem: function (index) {
         this.$emit('selectItem', index)
+      },
+      handleOnDeleteItem: function (index) {
+        this.$emit('deleteItem', index)
       }
     }
   }
