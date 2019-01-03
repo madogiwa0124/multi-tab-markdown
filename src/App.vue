@@ -60,6 +60,7 @@
 </script>
 <style lang="scss">
   $menu-item-hover-background-color: #fff;
+  $tabs-link-active-color: hsl(171, 100%, 41%);
   @import "bulma";
 
   html, body, #app {
