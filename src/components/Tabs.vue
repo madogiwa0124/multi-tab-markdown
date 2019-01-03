@@ -1,16 +1,12 @@
 <template>
   <div class="tabs is-boxed">
     <ul>
-      <li class="is-active">
+      <li v-for="(item, index) in items" :key="index" :class="{ 'is-active': isActive(item) }">
         <a>
-          <span>New Post</span>
-          <span class="icon is-small"><i class="fas fa-window-close"></i></span>
-        </a>
-      </li>
-      <li>
-        <a>
-          <span>2019/01/01 Hoge</span>
-          <span class="icon is-small"><i class="fas fa-window-close"></i></span>
+          <span @click="handleOnTabClick(index)">{{ item.title }}</span>
+          <span class="icon" @click="handleOnTabDelete($event, index)">
+            <i class="fas fa-window-close"></i>
+          </span>
         </a>
       </li>
       <li>
@@ -23,9 +19,34 @@
   export default {
     name: 'tabs',
     components: {},
+    props: ['initItems', 'initSelected'],
+    data: function () {
+      return {
+        selected: '',
+        items: []
+      }
+    },
+    watch: {
+      initSelected: function () {
+        this.selected = this.initSelected
+      },
+      initItems: function () {
+        this.items = this.initItems
+      }
+    },
     methods: {
+      isActive: function (item) {
+        return item.title == this.selected.title
+      },
+      handleOnTabClick: function (index) {
+        this.$emit('selectTab', index)
+      },
+      handleOnTabDelete: function (e, index) {
+        e.preventDefault()
+        this.$emit('deleteTab', index)
+      },
       handleOnNewPost: function (e) {
-        e.preventDefault();
+        e.preventDefault()
         this.$emit('newPost')
       }
     }
