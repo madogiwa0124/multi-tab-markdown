@@ -5,7 +5,7 @@
     </p>
     <ul class="menu-list">
       <li v-for="(item, index) in items" :key="index">
-        <a @click="handleOnClick($event, index)">{{item.title}}</a>
+        <a @click="handleOnClick($event, index)">{{item.title | shortTitle}}</a>
       </li>
     </ul>
   </div>
@@ -19,6 +19,12 @@
       handleOnClick: function(e, index) {
         e.preventDefault();
         this.$emit('selectItem', index)
+      }
+    },
+    filters: {
+      shortTitle: function (value, length = 8, omission = '...') {
+        if(value.length <= length) return value
+        return value.substring(0, length) + omission;
       }
     }
   }
