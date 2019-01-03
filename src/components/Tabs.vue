@@ -3,7 +3,7 @@
     <ul>
       <li v-for="(item, index) in items" :key="index" :class="{ 'is-active': isActive(item) }">
         <a>
-          <span @click="handleOnTabClick(index)">{{ item.title }}</span>
+          <span @click="handleOnTabClick(index)">{{ item.title | shortTitle }}</span>
           <span class="icon" @click="handleOnTabDelete($event, index)">
             <i class="fas fa-window-close"></i>
           </span>
@@ -32,6 +32,12 @@
       },
       initItems: function () {
         this.items = this.initItems
+      }
+    },
+    filters: {
+      shortTitle: function (value, length = 6, omission = '...') {
+        if(value.length <= length) return value
+        return value.substring(0, length) + omission;
       }
     },
     methods: {
