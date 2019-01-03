@@ -59,6 +59,7 @@
   }
 </script>
 <style lang="scss">
+  $menu-item-hover-background-color: #fff;
   @import "bulma";
 
   html, body, #app {

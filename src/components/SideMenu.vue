@@ -1,5 +1,5 @@
 <template>
-  <div class="menu">
+  <div class="menu has-background-light">
     <h1 class="title has-text-primary">
       <i class="fas fa-pen-nib"></i>
       MTM
@@ -24,6 +24,7 @@
 <style lang="scss">
   div {
     &.menu {
+      height: 100%;
       padding: 1.5em;
     }
   }
