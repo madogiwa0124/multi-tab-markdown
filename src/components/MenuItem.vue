@@ -6,7 +6,7 @@
     <ul class="menu-list">
       <li v-for="(item, index) in items" :key="index" class="menu-item">
         <a @click="handleOnClick($event, index)">
-          <i @click="handleOnDelete($event, index)" class="delete"></i>
+          <i @click="handleOnDelete($event, index)" class="delete icon is-small"></i>
           {{item.title | shortTitle}}
         </a>
       </li>

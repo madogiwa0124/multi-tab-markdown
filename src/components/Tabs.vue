@@ -4,9 +4,7 @@
       <li v-for="(item, index) in items" :key="index" :class="{ 'is-active': isActive(item) }">
         <a>
           <span @click="handleOnTabClick(index)">{{ item.title | shortTitle }}</span>
-          <span class="icon" @click="handleOnTabDelete($event, index)">
-            <i class="fas fa-window-close"></i>
-          </span>
+          <i class="icon delete" @click="handleOnTabDelete($event, index)"></i>
         </a>
       </li>
       <li>
@@ -48,7 +46,7 @@
         this.$emit('selectTab', index)
       },
       handleOnTabDelete: function (e, index) {
-        e.preventDefault()
+        e.stopPropagation()
         this.$emit('deleteTab', index)
       },
       handleOnNewPost: function (e) {
@@ -59,4 +57,11 @@
   }
 </script>
 <style lang="scss">
+  .tabs {
+    .delete {
+      &:hover {
+        background-color: hsl(348, 100%, 61%);
+      }
+    }
+  }
 </style>
