@@ -22,8 +22,8 @@
     props: ['initItems', 'initSelected'],
     data: function () {
       return {
-        selected: '',
-        items: []
+        selected: this.initSelected,
+        items: this.initItems
       }
     },
     watch: {

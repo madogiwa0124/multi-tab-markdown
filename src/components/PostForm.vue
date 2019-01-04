@@ -35,19 +35,14 @@
     },
     data: function () {
       return {
-        title: '',
-        markdownText: ''
+        title: this.initPost.title,
+        markdownText: this.initPost.markdownText
       }
     },
     watch: {
       initPost: function () {
-        if(this.initPost) {
-          this.title = this.initPost.title
-          this.markdownText = this.initPost.markdownText
-        } else {
-          this.title = ''
-          this.markdownText = ''
-        }
+        this.title = this.initPost.title
+        this.markdownText = this.initPost.markdownText
       }
     },
     methods: {

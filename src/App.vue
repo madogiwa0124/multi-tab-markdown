@@ -22,6 +22,8 @@
 <script>
   import moment from 'moment';
   import store from './store';
+  import { TUTORIAL_MARKDOWN, DEMO_MARKDOWN } from './components/sampleMarkdown'
+
   import Tabs from './components/Tabs';
   import SideMenu from './components/SideMenu';
   import PostForm from './components/PostForm';
@@ -30,6 +32,13 @@
     name: 'app',
     components: { Tabs, SideMenu, PostForm },
     data: () => store.state,
+    created: function () {
+      const tutorialPost = { title: 'MTMの使い方', markdownText: TUTORIAL_MARKDOWN }
+      const demoPost = { title: 'マークダウンDEMO', markdownText: DEMO_MARKDOWN }
+      this.posts.push(tutorialPost, demoPost)
+      this.selectedPost = tutorialPost
+      this.tabbedPosts = [tutorialPost, demoPost]
+    },
     methods: {
       handleOnSubmit: function (post) {
         this.posts.push(post)
