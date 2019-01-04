@@ -28,6 +28,10 @@
   import SideMenu from './components/SideMenu';
   import PostForm from './components/PostForm';
 
+  window.addEventListener('beforeunload', function(e) {
+    e.returnValue = 'このサイトを離れますか？'
+  }, false);
+
   export default {
     name: 'app',
     components: { Tabs, SideMenu, PostForm },
