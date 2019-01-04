@@ -55,9 +55,11 @@
     }
   }
 </script>
-<style src='../assets/stylesheets/markdown.css'></style>
+<!-- MEMO: 外部のcssのスタイルシートの読み込みってこんな感じでいいのか？ -->
 <style src='highlightjs/styles/github-gist.css'></style>
 <style lang="scss">
+  @import "../assets/stylesheets/markdown.scss";
+
   .save-button {
     margin-top: 10px;
     text-align: right;

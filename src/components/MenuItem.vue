@@ -19,6 +19,7 @@
     components: {},
     props: ['title', 'items'],
     methods: {
+      // MEMO: SideMenu側でもemitを送っている。要素をまたいだemitとか出来ない？
       handleOnClick: function(e, index) {
         e.preventDefault()
         this.$emit('selectItem', index)
@@ -28,6 +29,7 @@
         this.$emit('deleteItem', index)
       }
     },
+    // TODO: Tabs.vueにも同様のfillterがあるので共通化したい。
     filters: {
       shortTitle: function (value, length = 8, omission = '...') {
         if(value.length <= length) return value

@@ -32,6 +32,7 @@
     name: 'app',
     components: { Tabs, SideMenu, PostForm },
     data: () => store.state,
+    // MEMO: このへんの初期化のロジックってApp.vueのcreatedで書くのが正解？
     created: function () {
       const tutorialPost = { title: 'MTMの使い方', markdownText: TUTORIAL_MARKDOWN }
       const demoPost = { title: 'マークダウンDEMO', markdownText: DEMO_MARKDOWN }
@@ -40,6 +41,7 @@
       this.tabbedPosts = [tutorialPost, demoPost]
     },
     methods: {
+      // MEMO: App.vueにstoreに関する処理をまとめているため見通しは良くなっているが、処理が集まり過ぎている気がする。
       handleOnSubmit: function (post) {
         this.posts.push(post)
       },
@@ -79,6 +81,7 @@
 <style lang="scss">
   $menu-item-hover-background-color: #fff;
   $tabs-link-active-color: hsl(171, 100%, 41%);
+  // TODO: App.vueでのbulmaのimportを他のコンポーネントが読み込まれる前に行いたい。
   @import "bulma";
 
   html, body, #app {
