@@ -12,7 +12,7 @@
         @newPost="handleOnNewPost"
         @selectTab="handleOnSelectTab"
         @deleteTab="handleOnDeleteTab"
-        :initItems="tabbedPosts"
+        :items="tabbedPosts"
         :initSelected="selectedPost"
       />
       <PostForm :initPost="selectedPost" @submit="handleOnSubmit" />
@@ -38,8 +38,8 @@
     data: () => store.state,
     // MEMO: このへんの初期化のロジックってApp.vueのcreatedで書くのが正解？
     created: function () {
-      const tutorialPost = { title: 'MTMの使い方', markdownText: TUTORIAL_MARKDOWN }
-      const demoPost = { title: 'マークダウンDEMO', markdownText: DEMO_MARKDOWN }
+      const tutorialPost = { id: 1, title: 'MTMの使い方', markdownText: TUTORIAL_MARKDOWN }
+      const demoPost = { id: 2, title: 'マークダウンDEMO', markdownText: DEMO_MARKDOWN }
       this.posts.push(tutorialPost, demoPost)
       this.selectedPost = tutorialPost
       this.tabbedPosts = [tutorialPost, demoPost]
@@ -47,6 +47,7 @@
     methods: {
       // MEMO: App.vueにstoreに関する処理をまとめているため見通しは良くなっているが、処理が集まり過ぎている気がする。
       handleOnSubmit: function (post) {
+        if(this.findPost(post.id) || this.findTabbedPost(post.id)) return this.updatePost(post)
         this.posts.push(post)
       },
       handleOnSelectItem: function (index) {
@@ -74,10 +75,30 @@
       },
       initPost: function () {
         const initTitle = `${moment().format('YYYYMMDDkkmmss')}_NewPost`
-        return { title: initTitle, markdownText: '' }
+        return { id: this.calcPostId(), title: initTitle, markdownText: '' }
       },
-      isTabbed: function (post) {
-        return this.tabbedPosts.includes(post)
+      isTabbed: function (target) {
+        return this.tabbedPosts.map(post => post.id).includes(target.id)
+      },
+      isSelected: function (target) {
+        return this.selectedPost.id === target.id
+      },
+      calcPostId: function() {
+        return this.posts.length + 1
+      },
+      findPost: function(id) {
+        return this.posts.find(function(post) { return post.id === id })
+      },
+      findTabbedPost: function(id) {
+        return this.tabbedPosts.find(function(post) { return post.id === id })
+      },
+      updatePost: function(post) {
+        // MEMO:　もうちょいいい感じに書きたい。
+        const targetPostIndex = this.posts.indexOf(this.findPost(post.id))
+        const targetTabbedPostIndex = this.tabbedPosts.indexOf(this.findTabbedPost(post.id))
+        this.posts[targetPostIndex] = post
+        if(this.isTabbed(post))   this.tabbedPosts[targetTabbedPostIndex] = post
+        if(this.isSelected(post)) this.selectedPost = post
       }
     }
   }

@@ -35,12 +35,14 @@
     },
     data: function () {
       return {
+        id: this.initPost.id,
         title: this.initPost.title,
         markdownText: this.initPost.markdownText
       }
     },
     watch: {
       initPost: function () {
+        this.id = this.initPost.id
         this.title = this.initPost.title
         this.markdownText = this.initPost.markdownText
       }
@@ -49,7 +51,7 @@
       handleOnSubmit: function (e) {
         e.preventDefault()
         if(this.title.length === 0) { return alert('タイトルは必ず入力してください。') }
-        const post = { title: this.title, markdownText: this.markdownText }
+        const post = { id: this.id, title: this.title, markdownText: this.markdownText }
         this.$emit('submit', post)
       }
     }
