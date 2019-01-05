@@ -56,9 +56,9 @@
         this.selectedPost = post
       },
       handleOnDeleteItem: function (index) {
-        // TODO: ここはタブも合わせて削除するようにする。
-        if(this.isTabbed(this.posts[index])) return alert('タブを閉じてから削除してください。')
-        this.posts.splice(index, 1)
+        if(window.confirm(`「${this.posts[index].title}」を削除します。本当によろしいですか？`)) {
+          this.deletePost(this.posts[index])
+        }
       },
       handleOnSelectTab: function (index) {
         this.selectedPost = this.tabbedPosts[index]
@@ -99,6 +99,17 @@
         this.posts[targetPostIndex] = post
         if(this.isTabbed(post))   this.tabbedPosts[targetTabbedPostIndex] = post
         if(this.isSelected(post)) this.selectedPost = post
+      },
+      deletePost: function(post) {
+        // MEMO: もうちょいいい感じに書きたい。
+        const postIndex = this.posts.indexOf(this.findPost(post.id))
+        const tabbedPostIndex = this.tabbedPosts.indexOf(this.findTabbedPost(post.id))
+        if (this.isSelected(post)) {
+          const nextTabbedPost = this.tabbedPosts[tabbedPostIndex - 1] || this.tabbedPosts[tabbedPostIndex + 1]
+          this.selectedPost = nextTabbedPost
+        }
+        this.tabbedPosts.splice(tabbedPostIndex, 1)
+        this.posts.splice(postIndex, 1)
       }
     }
   }
