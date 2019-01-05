@@ -4,7 +4,7 @@
       <i class="fas fa-pen-nib"></i>
       MTM
     </h1>
-    <MenuItem
+    <MenuItemList
       title="Posts"
       :items="posts"
       @selectItem="handleOnSelectItem"
@@ -13,11 +13,11 @@
   </div>
 </template>
 <script>
-  import MenuItem from './MenuItem'
+  import MenuItemList from './MenuItemList'
 
   export default {
     name: 'sideMenu',
-    components: { MenuItem },
+    components: { MenuItemList },
     props: ['posts'],
     methods: {
       handleOnSelectItem: function (index) {

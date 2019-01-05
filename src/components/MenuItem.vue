@@ -1,23 +1,14 @@
 <template>
-  <div class="menu-item">
-    <p class="menu-label">
-      {{title}}
-    </p>
-    <ul class="menu-list">
-      <li v-for="(item, index) in items" :key="index" class="menu-item">
-        <a @click="handleOnClick($event, index)">
-          <i @click="handleOnDelete($event, index)" class="delete icon is-small"></i>
-          {{item.title | shortTitle}}
-        </a>
-      </li>
-    </ul>
-  </div>
+  <a @click="handleOnClick($event, index)" class="menu-item">
+    <i @click="handleOnDelete($event, index)" class="delete icon is-small"></i>
+    {{item.title | shortTitle}}
+  </a>
 </template>
 <script>
   export default {
     name: 'menuItem',
     components: {},
-    props: ['title', 'items'],
+    props: ['item', 'index'],
     methods: {
       // MEMO: SideMenu側でもemitを送っている。要素をまたいだemitとか出来ない？
       handleOnClick: function(e, index) {
@@ -39,7 +30,7 @@
   }
 </script>
 <style lang="scss">
-  .menu-list {
+  .menu-item {
     font-size: 14px;
 
     .delete {
