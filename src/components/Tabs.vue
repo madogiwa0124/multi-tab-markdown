@@ -17,19 +17,15 @@
   export default {
     name: 'tabs',
     components: {},
-    props: ['initItems', 'initSelected'],
+    props: ['items', 'initSelected'],
     data: function () {
       return {
-        selected: this.initSelected,
-        items: this.initItems
+        selected: this.initSelected
       }
     },
     watch: {
       initSelected: function () {
         this.selected = this.initSelected
-      },
-      initItems: function () {
-        this.items = this.initItems
       }
     },
     filters: {
