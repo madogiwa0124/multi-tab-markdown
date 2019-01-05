@@ -88,8 +88,16 @@
   // TODO: App.vueでのbulmaのimportを他のコンポーネントが読み込まれる前に行いたい。
   @import "bulma";
 
-  html, body, #app {
+  html, body, #app, aside {
     height: 100%;
+    margin: 0px;
+    padding: 0px;
+  }
+
+  aside {
+    &.column {
+      padding: 0px;
+    }
   }
 
   .main-content {

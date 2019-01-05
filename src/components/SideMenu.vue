@@ -33,7 +33,11 @@
   div {
     &.menu {
       height: 100%;
-      padding: 1.5em;
+      padding: 12px;
+
+      .title {
+        font-size: 48px;
+      }
     }
   }
 </style>
