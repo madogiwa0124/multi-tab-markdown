@@ -18,6 +18,7 @@
   export default {
     name: 'sideMenu',
     components: { MenuItemList },
+    // TODO: ここをstate.postsの中身の変更も検出してタイトルの変更を反映できるようにしたい
     props: ['posts'],
     methods: {
       handleOnSelectItem: function (index) {
