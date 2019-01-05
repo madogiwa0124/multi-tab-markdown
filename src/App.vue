@@ -64,8 +64,7 @@
         this.selectedPost = this.tabbedPosts[index]
       },
       handleOnDeleteTab: function (index) {
-        const NextTabbedPost = this.tabbedPosts[index - 1] || this.tabbedPosts[index + 1]
-        if (this.selectedPost == this.tabbedPosts[index]) this.selectedPost = NextTabbedPost
+        if (this.isSelected(this.tabbedPosts[index])) this.setNextTabbedPostToSelectedPost(index)
         this.tabbedPosts.splice(index, 1)
       },
       handleOnNewPost: function () {
@@ -92,6 +91,10 @@
       findTabbedPost: function(id) {
         return this.tabbedPosts.find(function(post) { return post.id === id })
       },
+      setNextTabbedPostToSelectedPost: function(tabbedPostIndex) {
+        const nextTabbedPost = this.tabbedPosts[tabbedPostIndex - 1] || this.tabbedPosts[tabbedPostIndex + 1]
+        this.selectedPost = nextTabbedPost
+      },
       updatePost: function(post) {
         // MEMO: もうちょいいい感じに書きたい。
         const targetPostIndex = this.posts.indexOf(this.findPost(post.id))
@@ -104,10 +107,7 @@
         // MEMO: もうちょいいい感じに書きたい。
         const postIndex = this.posts.indexOf(this.findPost(post.id))
         const tabbedPostIndex = this.tabbedPosts.indexOf(this.findTabbedPost(post.id))
-        if (this.isSelected(post)) {
-          const nextTabbedPost = this.tabbedPosts[tabbedPostIndex - 1] || this.tabbedPosts[tabbedPostIndex + 1]
-          this.selectedPost = nextTabbedPost
-        }
+        if (this.isSelected(post)) this.setNextTabbedPostToSelectedPost(tabbedPostIndex)
         this.tabbedPosts.splice(tabbedPostIndex, 1)
         this.posts.splice(postIndex, 1)
       }
