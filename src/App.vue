@@ -93,7 +93,7 @@
         return this.tabbedPosts.find(function(post) { return post.id === id })
       },
       updatePost: function(post) {
-        // MEMO:　もうちょいいい感じに書きたい。
+        // MEMO: もうちょいいい感じに書きたい。
         const targetPostIndex = this.posts.indexOf(this.findPost(post.id))
         const targetTabbedPostIndex = this.tabbedPosts.indexOf(this.findTabbedPost(post.id))
         this.posts[targetPostIndex] = post
