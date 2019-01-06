@@ -1,4 +1,6 @@
 # multi-tab-markdown
+## Demo
+![demo](./public/demo.gif)
 
 ## Project setup
 ```
