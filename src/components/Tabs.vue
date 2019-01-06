@@ -47,7 +47,7 @@ export default {
   },
   methods: {
     isActive: function (item) {
-      return item.title == this.selected.title
+      return item.id == this.selected.id
     },
     handleOnTabClick: function (postId) {
       this.$emit('selectTab', postId)
