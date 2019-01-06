@@ -1,61 +1,74 @@
 <template>
-  <form id="post-form" @submit="handleOnSubmit">
-    <input type="text" id="title" v-model="title" placeholder="Title">
+  <form
+    id="post-form"
+    @submit="handleOnSubmit"
+  >
+    <input
+      id="title"
+      v-model="title"
+      type="text"
+      placeholder="Title"
+    >
     <div id="editor">
       <textarea v-model="markdownText">input</textarea>
       <div class="save-button">
-        <button type="submit" class="button is-primary">Save</button>
+        <button
+          type="submit"
+          class="button is-primary"
+        >
+          Save
+        </button>
       </div>
     </div>
     <div id="preview">
-      <div v-html="compiledMarkdown"></div>
+      <div v-html="compiledMarkdown" />
     </div>
   </form>
 </template>
 <script>
-  import marked from 'marked';
-  import hljs from 'highlightjs';
+import marked from 'marked'
+import hljs from 'highlightjs'
 
-  export default {
-    name: 'postForm',
-    props: ['initPost'],
-    components: {},
-    created: function () {
-      marked.setOptions({
-        langPrefix: '',
-        highlight: function(code, lang) {
-          return hljs.highlightAuto(code, [lang]).value
-        }
-      });
-    },
-    computed: {
-      compiledMarkdown: function () {
-        return marked(this.markdownText)
+export default {
+  name: 'PostForm',
+  components: {},
+  props: ['initPost'],
+  data: function () {
+    return {
+      id: this.initPost.id,
+      title: this.initPost.title,
+      markdownText: this.initPost.markdownText
+    }
+  },
+  computed: {
+    compiledMarkdown: function () {
+      return marked(this.markdownText)
+    }
+  },
+  watch: {
+    initPost: function () {
+      this.id = this.initPost.id
+      this.title = this.initPost.title
+      this.markdownText = this.initPost.markdownText
+    }
+  },
+  created: function () {
+    marked.setOptions({
+      langPrefix: '',
+      highlight: function(code, lang) {
+        return hljs.highlightAuto(code, [lang]).value
       }
-    },
-    data: function () {
-      return {
-        id: this.initPost.id,
-        title: this.initPost.title,
-        markdownText: this.initPost.markdownText
-      }
-    },
-    watch: {
-      initPost: function () {
-        this.id = this.initPost.id
-        this.title = this.initPost.title
-        this.markdownText = this.initPost.markdownText
-      }
-    },
-    methods: {
-      handleOnSubmit: function (e) {
-        e.preventDefault()
-        if(this.title.length === 0) { return alert('タイトルは必ず入力してください。') }
-        const post = { id: this.id, title: this.title, markdownText: this.markdownText }
-        this.$emit('submit', post)
-      }
+    })
+  },
+  methods: {
+    handleOnSubmit: function (e) {
+      e.preventDefault()
+      if(this.title.length === 0) { return alert('タイトルは必ず入力してください。') }
+      const post = { id: this.id, title: this.title, markdownText: this.markdownText }
+      this.$emit('submit', post)
     }
   }
+}
 </script>
 <!-- MEMO: 外部のcssのスタイルシートの読み込みってこんな感じでいいのか？ -->
 <style src='highlightjs/styles/github-gist.css'></style>

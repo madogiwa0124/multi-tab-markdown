@@ -16,7 +16,7 @@ MTMは、タブ機能を持ったマークダウンエディタです。
 投稿の削除を行うには、左のサイドバーのxボタンをクリックします。
 
 ## ショートカット
-Comming soon...`;
+Comming soon...`
 
 export const DEMO_MARKDOWN =
 `# 見出し1
@@ -156,4 +156,4 @@ puts 1 + 1
 
 ## 画像
 
-これは ![バナナ](https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/220px-Bananavarieties.jpg) 画像です。`;
+これは ![バナナ](https://upload.wikimedia.org/wikipedia/commons/thumb/d/de/Bananavarieties.jpg/220px-Bananavarieties.jpg) 画像です。`
