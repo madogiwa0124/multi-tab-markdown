@@ -111,9 +111,7 @@ export default {
       this.posts[targetPostIndex] = post
       if(this.isTabbed(post))   this.tabbedPosts[targetTabbedPostIndex] = post
       if(this.isSelected(post)) this.selectedPost = post
-      // TODO: 変更を検知させるためにpostsの追加と削除を実施、本当はdeep watchで検知したい。
-      this.posts.push(this.initPost())
-      this.posts.pop()
+      this.tempNoticePostsChange()
     },
     deletePost: function(post) {
       // MEMO: もうちょいいい感じに書きたい。
@@ -122,6 +120,11 @@ export default {
       if (this.isSelected(post)) this.setNextTabbedPostToSelectedPost(tabbedPostIndex)
       this.tabbedPosts.splice(tabbedPostIndex, 1)
       this.posts.splice(postIndex, 1)
+    },
+    // TODO: 変更を検知させるためにpostsの追加と削除を実施、本当はdeep watchで検知したい。
+    tempNoticePostsChange: function () {
+      this.posts.push(this.initPost())
+      this.posts.pop()
     }
   }
 }
