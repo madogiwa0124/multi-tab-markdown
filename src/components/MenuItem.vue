@@ -1,11 +1,11 @@
 <template>
   <a
     class="menu-item"
-    @click="handleOnClick($event, index)"
+    @click="handleOnClick($event, item.id)"
   >
     <i
       class="delete icon is-small"
-      @click="handleOnDelete($event, index)"
+      @click="handleOnDelete($event, item.id)"
     />
     {{ item.title | shortTitle }}
   </a>
@@ -21,16 +21,16 @@ export default {
       return value.substring(0, length) + omission
     }
   },
-  props: ['item', 'index'],
+  props: ['item'],
   methods: {
     // MEMO: SideMenu側でもemitを送っている。要素をまたいだemitとか出来ない？
-    handleOnClick: function(e, index) {
+    handleOnClick: function(e, postId) {
       e.preventDefault()
-      this.$emit('selectItem', index)
+      this.$emit('selectItem', postId)
     },
-    handleOnDelete: function(e, index) {
+    handleOnDelete: function(e, postId) {
       e.stopPropagation()
-      this.$emit('deleteItem', index)
+      this.$emit('deleteItem', postId)
     }
   }
 }

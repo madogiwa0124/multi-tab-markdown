@@ -21,11 +21,11 @@ export default {
   // TODO: ここをstate.postsの中身の変更も検出してタイトルの変更を反映できるようにしたい
   props: ['posts'],
   methods: {
-    handleOnSelectItem: function (index) {
-      this.$emit('selectItem', index)
+    handleOnSelectItem: function (postId) {
+      this.$emit('selectItem', postId)
     },
-    handleOnDeleteItem: function (index) {
-      this.$emit('deleteItem', index)
+    handleOnDeleteItem: function (postId) {
+      this.$emit('deleteItem', postId)
     }
   }
 }

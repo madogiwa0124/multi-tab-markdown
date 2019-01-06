@@ -56,20 +56,23 @@ export default {
       if(this.findPost(post.id) || this.findTabbedPost(post.id)) return this.updatePost(post)
       this.posts.push(post)
     },
-    handleOnSelectItem: function (index) {
-      const post = this.posts[index]
+    handleOnSelectItem: function (postId) {
+      const post = this.findPost(postId)
       if(!this.isTabbed(post)) this.tabbedPosts.push(post)
       this.selectedPost = post
     },
-    handleOnDeleteItem: function (index) {
-      if(window.confirm(`「${this.posts[index].title}」を削除します。本当によろしいですか？`)) {
-        this.deletePost(this.posts[index])
+    handleOnDeleteItem: function (postId) {
+      const post = this.findPost(postId)
+      if(window.confirm(`「${post.title}」を削除します。本当によろしいですか？`)) {
+        this.deletePost(post)
       }
     },
-    handleOnSelectTab: function (index) {
+    handleOnSelectTab: function (postId) {
+      const index = this.tabbedPosts.indexOf(this.findTabbedPost(postId))
       this.selectedPost = this.tabbedPosts[index]
     },
-    handleOnDeleteTab: function (index) {
+    handleOnDeleteTab: function (postId) {
+      const index = this.tabbedPosts.indexOf(this.findTabbedPost(postId))
       if (this.isSelected(this.tabbedPosts[index])) this.setNextTabbedPostToSelectedPost(index)
       this.tabbedPosts.splice(index, 1)
     },

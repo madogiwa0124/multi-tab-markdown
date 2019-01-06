@@ -2,17 +2,17 @@
   <div class="tabs is-boxed">
     <ul>
       <li
-        v-for="(item, index) in items"
-        :key="index"
+        v-for="item in items"
+        :key="item.id"
         :class="{ 'is-active': isActive(item) }"
       >
         <a>
-          <span @click="handleOnTabClick(index)">
+          <span @click="handleOnTabClick(item.id)">
             {{ item.title | shortTitle }}
           </span>
           <i
             class="icon delete"
-            @click="handleOnTabDelete($event, index)"
+            @click="handleOnTabDelete($event, item.id)"
           />
         </a>
       </li>
@@ -49,12 +49,12 @@ export default {
     isActive: function (item) {
       return item.title == this.selected.title
     },
-    handleOnTabClick: function (index) {
-      this.$emit('selectTab', index)
+    handleOnTabClick: function (postId) {
+      this.$emit('selectTab', postId)
     },
-    handleOnTabDelete: function (e, index) {
+    handleOnTabDelete: function (e, postId) {
       e.stopPropagation()
-      this.$emit('deleteTab', index)
+      this.$emit('deleteTab', postId)
     },
     handleOnNewPost: function (e) {
       e.preventDefault()

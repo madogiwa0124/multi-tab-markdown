@@ -5,12 +5,11 @@
     </p>
     <ul class="menu-list">
       <li
-        v-for="(item, index) in items"
-        :key="index"
+        v-for="item in items"
+        :key="item.id"
       >
         <MenuItem
           :item="item"
-          :index="index"
           @selectItem="handleOnSelectItem"
           @deleteItem="handleOnDeleteItem"
         />
@@ -27,11 +26,11 @@ export default {
   props: ['title', 'items'],
   methods: {
     // MEMO: SideMenu側でもemitを送っている。要素をまたいだemitとか出来ない？
-    handleOnSelectItem: function(index) {
-      this.$emit('selectItem', index)
+    handleOnSelectItem: function(postId) {
+      this.$emit('selectItem', postId)
     },
-    handleOnDeleteItem: function(index) {
-      this.$emit('deleteItem', index)
+    handleOnDeleteItem: function(postId) {
+      this.$emit('deleteItem', postId)
     }
   },
 }
