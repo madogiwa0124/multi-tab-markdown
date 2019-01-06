@@ -102,6 +102,9 @@
         this.posts[targetPostIndex] = post
         if(this.isTabbed(post))   this.tabbedPosts[targetTabbedPostIndex] = post
         if(this.isSelected(post)) this.selectedPost = post
+        // TODO: 変更を検知させるためにpostsの追加と削除を実施、本当はdeep watchで検知したい。
+        this.posts.push(this.initPost())
+        this.posts.pop()
       },
       deletePost: function(post) {
         // MEMO: もうちょいいい感じに書きたい。
