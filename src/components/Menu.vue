@@ -16,7 +16,7 @@
 import MenuItemList from './MenuItemList'
 
 export default {
-  name: 'SideMenu',
+  name: 'Menu',
   components: { MenuItemList },
   // TODO: ここをstate.postsの中身の変更も検出してタイトルの変更を反映できるようにしたい
   props: ['posts'],

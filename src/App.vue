@@ -4,7 +4,7 @@
     class="columns"
   >
     <aside class="column is-2">
-      <SideMenu
+      <Menu
         :posts="posts"
         @selectItem="handleOnSelectItem"
         @deleteItem="handleOnDeleteItem"
@@ -31,7 +31,7 @@ import store from './store'
 import { TUTORIAL_MARKDOWN, DEMO_MARKDOWN } from './components/sampleMarkdown'
 
 import Tabs from './components/Tabs'
-import SideMenu from './components/SideMenu'
+import Menu from './components/Menu'
 import PostForm from './components/PostForm'
 
 window.addEventListener('beforeunload', function(e) {
@@ -40,7 +40,7 @@ window.addEventListener('beforeunload', function(e) {
 
 export default {
   name: 'App',
-  components: { Tabs, SideMenu, PostForm },
+  components: { Tabs, Menu, PostForm },
   data: () => store.state,
   // MEMO: このへんの初期化のロジックってApp.vueのcreatedで書くのが正解？
   created: function () {
