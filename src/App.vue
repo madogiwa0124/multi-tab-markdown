@@ -126,8 +126,7 @@ export default {
 <style lang="scss">
   $menu-item-hover-background-color: #fff;
   $tabs-link-active-color: hsl(171, 100%, 41%);
-  // TODO: App.vueでのbulmaのimportを他のコンポーネントが読み込まれる前に行いたい。
-  @import "bulma";
+  @import "./assets/stylesheets/application.scss";
 
   html, body, #app, aside {
     height: 100%;
