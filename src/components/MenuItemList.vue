@@ -25,7 +25,6 @@ export default {
   components: { MenuItem },
   props: ['title', 'items'],
   methods: {
-    // MEMO: SideMenu側でもemitを送っている。要素をまたいだemitとか出来ない？
     handleOnSelectItem: function(postId) {
       this.$emit('selectItem', postId)
     },

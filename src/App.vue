@@ -42,7 +42,6 @@ export default {
   name: 'App',
   components: { Tabs, Menu, PostForm },
   data: () => store.state,
-  // MEMO: このへんの初期化のロジックってApp.vueのcreatedで書くのが正解？
   created: function () {
     const tutorialPost = { id: 1, title: 'MTMの使い方', markdownText: TUTORIAL_MARKDOWN }
     const demoPost = { id: 2, title: 'マークダウンDEMO', markdownText: DEMO_MARKDOWN }
@@ -105,7 +104,6 @@ export default {
       this.selectedPost = nextTabbedPost
     },
     updatePost: function(post) {
-      // MEMO: もうちょいいい感じに書きたい。
       const targetPostIndex = this.posts.indexOf(this.findPost(post.id))
       const targetTabbedPostIndex = this.tabbedPosts.indexOf(this.findTabbedPost(post.id))
       this.$set(this.posts, targetPostIndex, post)
@@ -113,7 +111,6 @@ export default {
       if(this.isSelected(post)) this.selectedPost = post
     },
     deletePost: function(post) {
-      // MEMO: もうちょいいい感じに書きたい。
       const postIndex = this.posts.indexOf(this.findPost(post.id))
       const tabbedPostIndex = this.tabbedPosts.indexOf(this.findTabbedPost(post.id))
       if (this.isSelected(post)) this.setNextTabbedPostToSelectedPost(tabbedPostIndex)

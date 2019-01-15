@@ -23,7 +23,6 @@ export default {
   },
   props: ['item'],
   methods: {
-    // MEMO: SideMenu側でもemitを送っている。要素をまたいだemitとか出来ない？
     handleOnClick: function(e, postId) {
       e.preventDefault()
       this.$emit('selectItem', postId)

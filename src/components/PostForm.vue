@@ -70,7 +70,6 @@ export default {
   }
 }
 </script>
-<!-- MEMO: 外部のcssのスタイルシートの読み込みってこんな感じでいいのか？ -->
 <style src='highlightjs/styles/github-gist.css'></style>
 <style lang="scss">
   @import "../assets/stylesheets/markdown.scss";
