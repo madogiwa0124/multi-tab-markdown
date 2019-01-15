@@ -8,7 +8,7 @@
       >
         <a>
           <span @click="handleOnTabClick(item.id)">
-            {{ item.title | shortTitle }}
+            {{ item.title | shortTitle(9) }}
           </span>
           <i
             class="icon delete"
@@ -25,14 +25,13 @@
   </div>
 </template>
 <script>
+import { shortTitle } from '../filters'
+
 export default {
   name: 'Tabs',
   components: {},
   filters: {
-    shortTitle: function (value, length = 6, omission = '...') {
-      if(value.length <= length) return value
-      return value.substring(0, length) + omission
-    }
+    shortTitle: shortTitle
   },
   props: ['items', 'initSelected'],
   data: function () {

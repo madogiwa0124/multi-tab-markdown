@@ -11,15 +11,13 @@
   </a>
 </template>
 <script>
+import { shortTitle } from '../filters'
+
 export default {
   name: 'MenuItem',
   components: {},
-  // TODO: Tabs.vueにも同様のfillterがあるので共通化したい。
   filters: {
-    shortTitle: function (value, length = 11, omission = '...') {
-      if(value.length <= length) return value
-      return value.substring(0, length) + omission
-    }
+    shortTitle: shortTitle
   },
   props: ['item'],
   methods: {
