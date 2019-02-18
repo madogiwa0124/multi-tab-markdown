@@ -30,14 +30,6 @@ export default {
     handleOnDelete: function(e, postId) {
       e.stopPropagation()
       this.$emit('deleteItem', postId)
-    },
-    handleOnDownload: function(e, item) {
-      e.preventDefault()
-      const blob = new Blob([item.markdownText], { 'type' : 'text/plain' })
-      let link = document.createElement('a')
-      link.href = window.URL.createObjectURL(blob)
-      link.download = `${item.title}.md`
-      link.click()
     }
   }
 }
@@ -49,12 +41,6 @@ export default {
     .delete {
       &:hover {
         background-color: hsl(348, 100%, 61%);
-      }
-    }
-
-    .download {
-      &:hover {
-        color: hsl(204, 86%, 53%);
       }
     }
   }
