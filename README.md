@@ -17,6 +17,11 @@ npm run serve
 npm run build
 ```
 
+### Build by electron
+```
+npm run electron:build
+```
+
 ### Run your tests
 ```
 npm run test
