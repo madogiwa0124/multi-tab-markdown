@@ -8,14 +8,19 @@
       @click="handleOnDelete($event, item.id)"
     />
     {{ item.title | shortTitle }}
+<<<<<<< Updated upstream
+=======
+    <DownloadLink :item="item" />
+>>>>>>> Stashed changes
   </a>
 </template>
 <script>
 import { shortTitle } from '../filters'
+import DownloadLink from './DownloadLink'
 
 export default {
   name: 'MenuItem',
-  components: {},
+  components: { DownloadLink },
   filters: {
     shortTitle: shortTitle
   },
