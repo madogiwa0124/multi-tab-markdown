@@ -21,7 +21,9 @@
       </div>
     </div>
     <div id="preview">
+      <!-- eslint-disable-next-line vue/no-v-html -->
       <div v-html="compiledMarkdown" />
+      <!-- eslint-enable-next-line vue/no-v-html -->
     </div>
   </form>
 </template>

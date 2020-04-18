@@ -27,10 +27,7 @@
       "error",
       "never"
     ],
-    "vue/require-prop-types": "off",
-    "vue/no-v-html": [
-      { "excludedFiles": "./src/components/PostForm.vue" }
-    ]
+    "vue/require-prop-types": "off"
   },
   "overrides": [
     {
