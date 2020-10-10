@@ -27,7 +27,8 @@
       "error",
       "never"
     ],
-    "vue/require-prop-types": "off"
+    "vue/require-prop-types": "off",
+    "vue/custom-event-name-casing": "off"
   },
   "overrides": [
     {
