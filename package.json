@@ -11,7 +11,7 @@
     "postinstall": "electron-builder install-app-deps"
   },
   "dependencies": {
-    "bulma": "^0.9.1",
+    "bulma": "^0.9.3",
     "highlightjs": "^9.16.2",
     "marked": "^1.2.3",
     "moment": "^2.29.1",
